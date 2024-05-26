@@ -1,0 +1,37 @@
+{
+  "name": "vite-plugin-wasm-module-workers",
+  "version": "1.0.0",
+  "description": "A Vite plugin to use WASM with Vite and Cloudflare",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superhighfives/vite-plugin-wasm-module-workers.git"
+  },
+  "keywords": [
+    "vite",
+    "wasm",
+    "cloudflare",
+    "cloudflare",
+    "workers"
+  ],
+  "author": "Charlie Gleason <hi@charliegleason.com> (https://charliegleason.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/superhighfives/vite-plugin-wasm-module-workers/issues"
+  },
+  "homepage": "https://github.com/superhighfives/vite-plugin-wasm-module-workers#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
+  }
+}
