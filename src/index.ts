@@ -2,10 +2,11 @@
 import * as path from 'path'
 import * as fs from 'fs'
 
+import type { Plugin } from 'vite'
 import { ResolvedConfig } from 'vite'
 type LoadResult = string | null
 
-export default function wasmEdgeModule() {
+export default function wasmModuleWorkers():Plugin {
   const postfix = '.wasm?module'
   let isDev = false
 
@@ -54,7 +55,7 @@ export default function wasmEdgeModule() {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const assetId = (this as any).emitFile({
+      const assetId = this.emitFile({
         type: 'asset',
         name: path.basename(filePath),
         source: fs.readFileSync(filePath),
