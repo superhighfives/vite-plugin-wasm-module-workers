@@ -2,13 +2,48 @@
 
 Used on code.charliegleason.com to handle bundling Satori (Yoga) and Resvg WASM files for both Vite and Cloudflare.
 
+## Installation
+
+```bash
+npm i vite-plugin-wasm-module-workers -D
+```
+
+And then in your `vite.config.ts`:
+```ts
+import wasmModuleWorkers from 'vite-plugin-wasm-module-workers'
+
+export default defineConfig({
+  plugins: [
+    wasmModuleWorkers(),
+    // ... more plugins
+  ],
+})
+```
+
+You'll also need to make sure you copy the WASM files to where Cloudflare expects them, usually at the end of the build process.
+
+For example, in your `package.json`:
+
+```json
+{
+  "scripts": {
+    "build": "remix vite:build && cp -f build/client/assets/*.wasm build/server/assets"
+  }
+}
+```
+
+
 ## How does it work?
 
-Let's say we're using Satori to generate an og:image in our Vite Remix app.
+Let's say we're using [Satori](https://github.com/vercel/satori) to generate an og:image in our Vite Remix app.
 
 First, we import the dependencies:
 
 ```ts
+import satori, { init as initSatori } from 'satori/wasm'
+import { Resvg, initResvg } from '@resvg/resvg-wasm'
+import initYoga from 'yoga-wasm-web'
+
 import YOGA_WASM from 'yoga-wasm-web/dist/yoga.wasm?url'
 import RESVG_WASM from '@resvg/resvg-wasm/index_bg.wasm?url'
 ```
@@ -26,7 +61,7 @@ export async function createOGImage(title: string, requestUrl: string) {
 
   try {
     if (!initialised) {
-      await initWasm(resvgwasm)
+      await initResvg(resvgwasm)
       await initSatori(await initYoga(yogawasm))
       initialised = true
     }
