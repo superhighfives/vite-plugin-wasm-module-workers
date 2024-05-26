@@ -72,6 +72,9 @@ export async function createOGImage(title: string, requestUrl: string) {
   // more fancy code
 ```
 
+> [!WARNING]
+> My ability to write regualar expresions is not one of my strengths, so the imports and `const { default: whateverWarmModule } = await import...` needs to be exactly as it is in the example above. If you have a better handle on regex and are keen to improve it, check out [contributing](#contributing).
+
 VPWMW will take this code on build and convert it to something Cloudflare expects:
 
 ```ts
@@ -96,4 +99,8 @@ async function createOGImage(title, requestUrl) {
   // more fancy build code
 ```
 
-Magic. ✨ This plugin also contains some pretty rough regular expressions to convert the code, so if you have any better suggestions for how that could work, I encourage you to [open an issue](https://github.com/superhighfives/vite-plugin-wasm-module-workers/issues) or, even better, [a PR](https://github.com/superhighfives/vite-plugin-wasm-module-workers/pulls/new).
+Magic. ✨
+
+## Contributing
+
+This plugin also contains some pretty rough regular expressions to convert the code, so if you have any better suggestions for how that could work, I encourage you to [open an issue](https://github.com/superhighfives/vite-plugin-wasm-module-workers/issues) or, even better, [a PR](https://github.com/superhighfives/vite-plugin-wasm-module-workers/pulls/new).
