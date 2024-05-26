@@ -1,6 +1,6 @@
 # vite-plugin-wasm-module-workers (VPWMW)
 
-Used on code.charliegleason.com to handle bundling Satori (Yoga) and Resvg WASM files for both Vite and Cloudflare.
+Used on [code.charliegleason.com](https://code.charliegleason.com) to handle bundling Satori (Yoga) and Resvg WASM files for both Vite and Cloudflare.
 
 ## Installation
 
