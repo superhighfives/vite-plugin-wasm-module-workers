@@ -41,7 +41,7 @@ First, we import the dependencies:
 
 ```ts
 import satori, { init as initSatori } from 'satori/wasm'
-import { Resvg, initResvg } from '@resvg/resvg-wasm'
+import { Resvg, initWasm as initResvg } from '@resvg/resvg-wasm'
 import initYoga from 'yoga-wasm-web'
 
 import YOGA_WASM from 'yoga-wasm-web/dist/yoga.wasm?url'
