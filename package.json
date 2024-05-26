@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-wasm-module-workers",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A Vite plugin to use WASM with Vite and Cloudflare",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
