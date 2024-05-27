@@ -6,7 +6,7 @@ import type { Plugin } from 'vite'
 import { ResolvedConfig } from 'vite'
 type LoadResult = string | null
 
-function wasmModuleWorkers(): Plugin {
+export default function wasmModuleWorkers(): Plugin {
   const postfix = '.wasm?module'
   let isDev = false
 
@@ -20,7 +20,7 @@ function wasmModuleWorkers(): Plugin {
     },
     renderChunk(code: string) {
       if (isDev) return
-      if (!/.*\.wasm.*/g.test(code)) return
+      if (!/.*\?module.*/g.test(code)) return
 
       let final = code.replaceAll(/(const\s+(\w+))(.*\.wasm.*)/gm, (s) => {
         return s.replace(/const\s+(\w+)\s*=\s*"(.*)"/, 'import $1 from ".$2"')

@@ -76,8 +76,24 @@ export async function createOGImage(title: string, requestUrl: string) {
   // more fancy code
 ```
 
+To trigger the plugin on a file, you'll need to have `?module` in there. For example:
+
+```ts
+import RESVG_WASM from '@resvg/resvg-wasm/index_bg.wasm?url'
+
+const { default: resvgwasm } = await import(
+  /* @vite-ignore */ `${RESVG_WASM}?module`
+)
+```
+
+Once running, the main things the plugin will look out for are:
+
+- The constant in `import RESVG_WASM from 'yoga-wasm-web/dist/yoga.wasm?url'`
+- The variable name in `const { default: resvgwasm } ...`
+- The constant in `${RESVG_WASM}`
+
 > [!WARNING]
-> My ability to write regualar expresions is not one of my strengths, so the imports and `const { default: whateverWarmModule } = await import...` needs to be exactly as it is in the example above. If you have a better handle on regex and are keen to improve it, check out [contributing](#contributing).
+> My ability to write regualar expresions is not one of my strengths, so if things aren't working I'd recommend trying to match the imports and `const { default: whateverWarmModule } = await import...` to what it is in the example above. If you have a better handle on regex and are keen to improve it, check out [contributing](#contributing). I'm not confident how nicely this set up will play with different types of WASM imports, so here be dragons.
 
 VPWMW will take this code on build and convert it to something Cloudflare expects:
 
