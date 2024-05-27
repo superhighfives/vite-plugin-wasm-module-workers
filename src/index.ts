@@ -6,7 +6,7 @@ import type { Plugin } from 'vite'
 import { ResolvedConfig } from 'vite'
 type LoadResult = string | null
 
-export default function wasmModuleWorkers():Plugin {
+function wasmModuleWorkers(): Plugin {
   const postfix = '.wasm?module'
   let isDev = false
 
@@ -20,19 +20,16 @@ export default function wasmModuleWorkers():Plugin {
     },
     renderChunk(code: string) {
       if (isDev) return
-      if (!/.*_WASM.*/g.test(code)) return
+      if (!/.*\.wasm.*/g.test(code)) return
 
-      let final = code.replaceAll(/(const\s+(\w+))(.*_WASM.*)/g, (s) => {
-        return s.replace(
-          /const\s+(\w+)_(WASM)\s*=\s*"(.*)"/,
-          'import $1_WASM from ".$3"'
-        )
+      let final = code.replaceAll(/(const\s+(\w+))(.*\.wasm.*)/gm, (s) => {
+        return s.replace(/const\s+(\w+)\s*=\s*"(.*)"/, 'import $1 from ".$2"')
       })
 
-      final = final.replaceAll(/const { default:(\n|.)*?(;)/gm, (s) => {
+      final = final.replaceAll(/const\n*.*{\n*.*default:(\n|.)*?(;)/gm, (s) => {
         return s.replace(
-          /const\s{\sdefault:\s(\w+) } = await import\(\n\s+\/\*\s@vite-ignore\s\*\/\n\s+`\${(\w+)}(\n|.)*?(;)/,
-          'const $1 = $2'
+          /[\s\S]*?(?=:\s):\s(\w+)[\s\S]*?(?=\{){(.*?)}[\s\S]*?(?:\);*)/gm,
+          `const $1 = $2`
         )
       })
 

@@ -39,6 +39,8 @@ For example, in your `package.json`:
 
 Let's say we're using [Satori](https://github.com/vercel/satori) to generate an og:image in our Vite Remix app.
 
+It's important to only import `.wasm` with `?url`, which helps ensure Vite doesn't try to do anything fancy with it.
+
 First, we import the dependencies:
 
 ```ts
