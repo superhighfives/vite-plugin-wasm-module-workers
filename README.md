@@ -98,7 +98,6 @@ Once running, the main things the plugin will look out for are:
 VPWMW will take this code on build and convert it to something Cloudflare expects:
 
 ```ts
-)
 import YOGA_WASM from './assets/yoga-CP4IUfLV.wasm'
 import RESVG_WASM from './assets/index_bg-Blvrv-U2.wasm'
 let initialised = false
