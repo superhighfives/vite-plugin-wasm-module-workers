@@ -1,5 +1,8 @@
 # vite-plugin-wasm-module-workers (VPWMW)
 
+> [!NOTE]
+> **This plugin is no longer needed, and the repo is archived.** Cloudflare's official [Vite plugin](https://developers.cloudflare.com/workers/vite-plugin/) (`@cloudflare/vite-plugin`) imports `.wasm` files as a `WebAssembly.Module` out of the box, and Satori's bring-your-own-yoga build is now `satori/standalone` (it was `satori/wasm` before 0.11). Import the `.wasm` files in your Worker entry and pass them to `initResvg` and `initSatori`. Satori now uses `yoga-layout`, which ships its wasm base64-encoded inside a JS file, so you'll need to extract the binary into a `.wasm` file once.
+
 Handle bundling WASM modules like [Satori](https://github.com/vercel/satori) (Yoga and Resvg WASM) files for both Vite and Cloudflare.
 
 Used on [code.charliegleason.com](https://code.charliegleason.com) ([GitHub repo](https://github.com/superhighfives/code.charliegleason.com)).
